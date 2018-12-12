@@ -1,8 +1,6 @@
 require 'Capybara/dsl'
 
 class Confirmation
-
-
   include Capybara::DSL
 
   attr_accessor :error_no_match, :invalid_email, :invalid_password
@@ -12,32 +10,30 @@ class Confirmation
     @invalid_email = "Sorry, we can’t find an account with that email. You can register for a new account or get help here."
   end
 
-  USERNAME_ID = 'user-identifier-input'
+  USERNAME_IDENTIFIER_ID = 'user-identifier-input'
   USERNAME_ERROR_ELEMENT = '#form-message-username'
-  USERNAME_CLASS = ".form-message form-message--error form-message--username field__error"
-  PASSWORD_ID = 'password-input'
-  PASSWORD = '#form-message-password'
+  PASSWORD_IDENTIFIER_ID = 'password-input'
+  PASSWORD_ERROR_ELEMENT = '#form-message-password'
   SUBMIT_BUTTON = '#submit-button'
-
 
   def current_url
     page.current_url
   end
 
   def fill_in_username_field(text)
-    fill_in(USERNAME_ID, :with => text)
+    fill_in(USERNAME_IDENTIFIER_ID, :with => text)
   end
 
   def check_user_name_field
-    find_field(USERNAME_ID).value
+    find_field(USERNAME_IDENTIFIER_ID).value
   end
 
   def fill_in_password(text)
-    fill_in(PASSWORD_ID, :with => text)
+    fill_in(PASSWORD_IDENTIFIER_ID, :with => text)
   end
 
   def check_password_field
-    find_field(PASSWORD_ID).value
+    find_field(PASSWORD_IDENTIFIER_ID).value
   end
 
   def click_sign_in
@@ -45,12 +41,11 @@ class Confirmation
   end
 
   def get_error_message_password
-    find(PASSWORD).text
+    find(PASSWORD_ERROR_ELEMENT).text
   end
 
   def get_error_message_username
     find(USERNAME_ERROR_ELEMENT).text
   end
-
-
+  
 end
