@@ -3,7 +3,7 @@ require 'Capybara/dsl'
 class Confirmation
   include Capybara::DSL
 
-  attr_accessor :error_no_match, :invalid_email, :invalid_password
+  attr_accessor :invalid_email, :invalid_password
 
   def initialize
     @invalid_password = "Uh oh, that password doesn\u2019t match that account. Please try again."
@@ -47,5 +47,5 @@ class Confirmation
   def get_error_message_username
     find(USERNAME_ERROR_ELEMENT).text
   end
-  
+
 end
